@@ -1,0 +1,26 @@
+.footer-container {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #3f355f;
+  color: #999999;
+  padding: 1rem 1.5rem;
+}
+
+.footer-container .footer-right {
+  display: flex;
+}
+.footer-container .footer-right .footer-icon {
+  color: #999999;
+  font-size: 20px;
+  display: flex;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.footer-container .footer-right .footer-icon:hover {
+  color: #fff;
+}

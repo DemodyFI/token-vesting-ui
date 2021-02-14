@@ -6,7 +6,7 @@ import Network from "../network";
 import Header from "./Header";
 
 import Spinner from "./Spinner";
-
+import Footer from "./Footer";
 import "../stylesheets/Buy.css";
 
 export default class Buy extends Component {
@@ -127,45 +127,45 @@ export default class Buy extends Component {
           tokenName={"DemodyFi Token"}
           contractName={"Crowdsale"}
         />
-        <h2>DemodyFi Seed Round Sale</h2>
-        <h4>Buy DMOD token with ETH</h4>
-        <br />
-        <input
-          placeholder="Enter ETH amount"
-          type="text"
-          onChange={this.updateAmount}
-          className="inputBuy"
-        />
-        <br />
-        {this.state.web3 ? (
-          <span>
-            DMOD Tokens You Will Get (Approx) -{" "}
-            {this.state.web3.utils.fromWei(this.state.dmodAmount.toString())}
-          </span>
-        ) : null}
-        <br />
-        <br />
-        <button className="buttonBuy" onClick={this.buyTokens}>
-          Buy Now
-        </button>
-        <br />
-        <br />
-        {this.state.vestingContractAddress ? (
-          <span>
-            Click on the link for you vesting information. Please save it for
-            future reference.
-            <a
-              href={
-                "/" +
-                this.state.vestingContractAddress +
-                "/0x8025B11AF54309ce4571d1E0a02f9d4a5389592A"
-              }
-              onClick={this.goToVesting}
-            >
-              Your Vesting Link
-            </a>
-          </span>
-        ) : null}
+        <div className="card-container">
+          <div>
+            <img src={require("../assets/logosharp.png").default} alt="domodyfi logo" className="logo-image"/>
+          </div>
+          <h2>DemodyFi Seed Round Sale</h2>
+          <h4>Buy $DMOD token with ETH</h4>
+          <input
+            placeholder="Enter ETH amount"
+            type="text"
+            onChange={this.updateAmount}
+            className="inputBuy"
+          />
+          {this.state.web3 ? (
+            <span>
+              DMOD Tokens You Will Get (Approx) -{" "}
+              {this.state.web3.utils.fromWei(this.state.dmodAmount.toString())}
+            </span>
+          ) : null}
+          <button className="buttonBuy" onClick={this.buyTokens}>
+            Buy Now
+          </button>
+          {this.state.vestingContractAddress ? (
+            <span className="vesting-done">
+              Click on the link for you vesting information. Please save it for
+              future reference.{" "}
+              <a
+                href={
+                  "/" +
+                  this.state.vestingContractAddress +
+                  "/0x8025B11AF54309ce4571d1E0a02f9d4a5389592A"
+                }
+                onClick={this.goToVesting}
+              >
+                Your Vesting Link
+              </a>
+            </span>
+          ) : null}
+        </div>
+        <Footer />
       </div>
     );
   }

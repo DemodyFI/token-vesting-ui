@@ -10,6 +10,7 @@ import Spinner from "./Spinner";
 
 import "../stylesheets/TokenVestingApp.css";
 import Network from "../network";
+import Footer from "./Footer";
 
 class TokenVestingApp extends Component {
   constructor() {
@@ -50,6 +51,7 @@ class TokenVestingApp extends Component {
             </Col>
           </Row>
         </Container>
+        <Footer />
       </div>
     );
   }

@@ -1,16 +1,40 @@
 .BuyComponent {
   background-color: #fafbfc;
   text-align: center;
+  height: 100vh;
 }
 
+.BuyComponent .logo-image {
+  height: 84px;
+  width: 84px;
+}
 .BuyComponent h2 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
+  color: #3f355f;
+}
+
+.BuyComponent h4 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3f355fd3;
+}
+
+.BuyComponent .card-container {
+  box-shadow: 0 4px 4px hsla(0, 0%, 76.9%, 0.3);
+  background-color: var(--white);
+  padding: 2rem;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
 }
 
 .BuyComponent span {
-  color: #333;
+  color: #3f355f;
   font-size: 14px;
+  margin-bottom: 1rem;
 }
 
 .BuyComponent .buttonBuy {
@@ -25,6 +49,8 @@
   color: #323232;
   text-align: center;
   transition: all 0.2s;
+  width: 32%;
+  margin: 0 auto;
 }
 
 .BuyComponent .buttonBuy:hover {
@@ -36,7 +62,6 @@
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #323232;
-  margin: 0 0.3em 0.3em 0;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
@@ -44,6 +69,23 @@
   color: #323232;
   text-align: center;
   transition: all 0.2s;
+  width: 50%;
+  margin: 1rem auto;
+  margin-top: 2rem;
+}
+
+.BuyComponent .vesting-done {
+  background: #21965452;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
+  padding: 0.7rem 1rem;
+  text-align: center;
+  border-radius: 32px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.44px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 1rem;
 }
 
 @media all and (max-width: 30em) {

@@ -168,7 +168,7 @@ function Revocable({ revocable, onRevoke, canRevoke }) {
       <Emoji e="✅" />
       {canRevoke ? (
         <a className="action" onClick={onRevoke}>
-          revoke
+          Revoke
         </a>
       ) : null}
     </span>
@@ -181,7 +181,7 @@ function Releasable({ releasable, onRelease, children }) {
       {children}
       {releasable > 0 ? (
         <a className="action" onClick={onRelease}>
-          release
+          Release
         </a>
       ) : null}
     </span>

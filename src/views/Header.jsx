@@ -13,7 +13,7 @@ function Header({ address, token, tokenName, contractName }) {
         >
           <img
             className="logo hidden-xs hidden-sm"
-            src="/logo-zeppelin.png"
+            src={require("../assets/logosharp.png").default}
             alt="OpenZeppelin logo"
           />
         </a>
@@ -22,7 +22,7 @@ function Header({ address, token, tokenName, contractName }) {
             {contractName} address: <ContractLink address={address} />
           </h3>
           <span>
-            For <TokenLink address={token} name={tokenName} /> token
+            For <TokenLink address={token} name={tokenName} />
           </span>
         </div>
       </Col>

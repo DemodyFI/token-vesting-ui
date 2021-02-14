@@ -1,7 +1,9 @@
 .TokenVestingApp {
   background-color: #fafbfc;
   text-align: center;
+  height: 100vh;
 }
+
 
 .header {
   margin-bottom: 30px;
@@ -67,8 +69,11 @@
 .spinner {
   position: absolute;
   width: 100%;
-  height: 100%;
-  padding-top: 200px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding-top: 200px; */
 
   background: rgba(255, 255, 255, .5);
   z-index: 1;
