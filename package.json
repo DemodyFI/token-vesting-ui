@@ -3,19 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@openzeppelin/contracts": "2.5.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@truffle/contract": "^4.3.7",
+    "@walletconnect/web3-provider": "^1.3.6",
+    "bnc-onboard": "^1.19.1",
+    "bootstrap": "^4.6.0",
+    "chart.js": "^2.9.4",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
+    "react-chartjs-2": "^2.11.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
-    "web-vitals": "^1.0.1"
+    "require-symlink": "^0.2.0",
+    "web-vitals": "^1.0.1",
+    "web3": "^1.3.4",
+    "web3modal": "^1.9.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "require-link && react-scripts start",
+    "build": "require-link && react-scripts build",
+    "test": "require-link && react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "requireSymlinks": {
+    "contracts": "./build/contracts"
   },
   "eslintConfig": {
     "extends": [

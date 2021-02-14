@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Web3 from "web3";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import TokenVestingApp from "./views/TokenVestingApp";
+import Buy from "./views/Buy";
+
+const App = () => (
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Buy} />
+      <Route path="/:address/:token" component={Main} />
+      <Route component={MissingAddress} />
+    </Switch>
+  </Router>
+);
+
+const Main = function ({ match }) {
+  let web3 = new Web3();
+  let { address, token } = match.params;
+
+  // TODO validate TokenVesting address
+  return web3.utils.isAddress(address) ? (
+    <TokenVestingApp address={address} token={token} />
+  ) : (
+    <MissingAddress />
   );
-}
+};
+
+const MissingAddress = () => <p>This is not a TokenVesting address :(</p>;
 
 export default App;
