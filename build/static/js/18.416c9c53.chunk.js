@@ -1,2 +1,0 @@
-(this["webpackJsonpdm-token-vesting-ui"]=this["webpackJsonpdm-token-vesting-ui"]||[]).push([[18],{1751:function(n,i){},1771:function(n,i){},1795:function(n,i){}}]);
-//# sourceMappingURL=18.416c9c53.chunk.js.map
