@@ -19,6 +19,9 @@ export default class Buy extends Component {
       dmodCost: "500000000000000000",
       web3: null,
       loading: false,
+      checked: false,
+      showText: false,
+      noVesting: false,
     };
 
     console.log(props);
@@ -27,6 +30,7 @@ export default class Buy extends Component {
     this.updateAmount = this.updateAmount.bind(this);
     this.buyTokens = this.buyTokens.bind(this);
     this.goToVesting = this.goToVesting.bind(this);
+    this.getVestingLink = this.getVestingLink.bind(this);
   }
 
   async componentDidMount() {
@@ -77,11 +81,11 @@ export default class Buy extends Component {
   }
 
   async buyTokens(e) {
-    if (this.state.ethAmount) {
+    if (this.state.ethAmount && this.state.checked) {
       try {
         await Network.connectToWallet();
         const dmodCrowdsaleInstance = await getDmodCrowdsale(
-          "0x0A0C6D96EffD4F0c6b921FB3cD46a0d64b052988"
+          "0xaFbc53F52E5a50a32Ec3a269f8F79091Aa85d0FD"
         );
         const accounts = await Network.getAccounts();
         this.setState({ loading: true, accounts });
@@ -108,6 +112,51 @@ export default class Buy extends Component {
         this.setState({ loading: false });
       }
     }
+    if (!this.state.checked) {
+      this.setState({ checked: false, showText: true });
+    }
+  }
+
+  async getVestingLink(e) {
+    try {
+      await Network.connectToWallet();
+      const dmodCrowdsaleInstance = await getDmodCrowdsale(
+        "0xaFbc53F52E5a50a32Ec3a269f8F79091Aa85d0FD"
+      );
+      const accounts = await Network.getAccounts();
+      this.setState({ loading: true, accounts });
+      console.log(this.state.accounts);
+      console.log(dmodCrowdsaleInstance);
+      const events = await dmodCrowdsaleInstance
+        .getPastEvents("VestingCreated", {
+          filter: {
+            beneficiary: accounts[0],
+          }, // Using an array means OR: e.g. 20 or 23
+          fromBlock: 0,
+          fromBlock: 0,
+          toBlock: "latest",
+        })
+        .then((events) => {
+          if (events.length > 0) {
+            const vestingContractAddress =
+              events[0].returnValues.vestingContract;
+            this.setState({
+              vestingContractAddress,
+              loading: false,
+              noVesting: false,
+            });
+          } else {
+            this.setState({
+              loading: false,
+              noVesting: true,
+            });
+          }
+        });
+    } catch (error) {
+      console.log(error);
+      alert("Error! Please try again");
+      this.setState({ loading: false });
+    }
   }
 
   async goToVesting() {
@@ -122,14 +171,18 @@ export default class Buy extends Component {
         {this.state.loading ? <Spinner /> : null}
 
         <Header
-          address={"0x0A0C6D96EffD4F0c6b921FB3cD46a0d64b052988"}
+          address={"0xaFbc53F52E5a50a32Ec3a269f8F79091Aa85d0FD"}
           token={"0x8025B11AF54309ce4571d1E0a02f9d4a5389592A"}
           tokenName={"DemodyFi Token"}
           contractName={"Crowdsale"}
         />
         <div className="card-container">
           <div>
-            <img src={require("../assets/logosharp.png").default} alt="domodyfi logo" className="logo-image"/>
+            <img
+              src={require("../assets/logosharp.png").default}
+              alt="domodyfi logo"
+              className="logo-image"
+            />
           </div>
           <h2>DemodyFi Seed Round Sale</h2>
           <h4>Buy $DMOD token with ETH</h4>
@@ -145,8 +198,27 @@ export default class Buy extends Component {
               {this.state.web3.utils.fromWei(this.state.dmodAmount.toString())}
             </span>
           ) : null}
+          <label className="checklabel">
+            <input
+              className="termscheck"
+              type="checkbox"
+              name="checkbox"
+              onChange={() => {
+                this.setState({ checked: true, showText: false });
+              }}
+            />
+            Before investing in the Demodyfi seed round sale make sure that the
+            saft form has been signed and sent to info@demodyfi.com
+          </label>
+          {this.state.showText ? (
+            <span className="error">Please click on checkbox</span>
+          ) : null}
+
           <button className="buttonBuy" onClick={this.buyTokens}>
             Buy Now
+          </button>
+          <button className="buttonLink" onClick={this.getVestingLink}>
+            Already Bought! Get Vesting Link
           </button>
           {this.state.vestingContractAddress ? (
             <span className="vesting-done">
@@ -162,6 +234,12 @@ export default class Buy extends Component {
               >
                 Your Vesting Link
               </a>
+            </span>
+          ) : null}
+          {this.state.noVesting ? (
+            <span className="vesting-done">
+              Sorry! No Vesting Contract Found. You haven't bought any tokens
+              yet
             </span>
           ) : null}
         </div>
