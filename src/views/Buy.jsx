@@ -127,12 +127,11 @@ export default class Buy extends Component {
       this.setState({ loading: true, accounts });
       console.log(this.state.accounts);
       console.log(dmodCrowdsaleInstance);
-      const events = await dmodCrowdsaleInstance
+      await dmodCrowdsaleInstance
         .getPastEvents("VestingCreated", {
           filter: {
             beneficiary: accounts[0],
           }, // Using an array means OR: e.g. 20 or 23
-          fromBlock: 0,
           fromBlock: 0,
           toBlock: "latest",
         })
@@ -213,12 +212,12 @@ export default class Buy extends Component {
           {this.state.showText ? (
             <span className="error">Please click on checkbox</span>
           ) : null}
-
           <button className="buttonBuy" onClick={this.buyTokens}>
             Buy Now
           </button>
+          <div className="already-text">Already Bought!</div>
           <button className="buttonLink" onClick={this.getVestingLink}>
-            Already Bought! Get Vesting Link
+            Get Vesting Link
           </button>
           {this.state.vestingContractAddress ? (
             <span className="vesting-done">
