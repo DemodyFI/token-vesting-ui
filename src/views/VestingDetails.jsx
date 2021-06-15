@@ -8,11 +8,13 @@ import Network from "../network";
 
 import { ContractLink } from "./Links";
 import Emoji from "./Emoji";
+import TxModal from "./TxModal";
 
 class VestingDetails extends Component {
   constructor() {
     super();
     this.state = { canRevoke: false };
+    this.onRelease = this.onRelease.bind(this);
   }
 
   render() {
@@ -118,8 +120,35 @@ class VestingDetails extends Component {
     const tokenVesting = await this.getTokenVesting();
 
     try {
-      this.startLoader();
-      await tokenVesting.release(token, { from: accounts[0] });
+      // this.startLoader();
+      tokenVesting
+        .release(token, { from: accounts[0] })
+        .on("transactionHash", (hash) => {
+          this.props.setTxData(hash, "Pending");
+        })
+        .on("confirmation", (_, receipt) => {
+          console.log(receipt);
+        })
+        .on("receipt", (receipt) => {
+          console.log(
+            "%cMyProject%cline:138%creceipt",
+            "color:#fff;background:#ee6f57;padding:3px;border-radius:2px",
+            "color:#fff;background:#1f3c88;padding:3px;border-radius:2px",
+            "color:#fff;background:rgb(217, 104, 49);padding:3px;border-radius:2px",
+            receipt
+          );
+          this.props.setTxData(receipt.transactionHash, "Done");
+        })
+        .on("error", function (error) {
+          console.log(
+            "%cMyProject%cline:140%cerror",
+            "color:#fff;background:#ee6f57;padding:3px;border-radius:2px",
+            "color:#fff;background:#1f3c88;padding:3px;border-radius:2px",
+            "color:#fff;background:rgb(248, 214, 110);padding:3px;border-radius:2px",
+            error
+          );
+        });
+      // const tx = await tokenVesting.beneficiary({ from: accounts[0] });
       this.props.getData();
     } catch (e) {
       console.log(e);
@@ -142,7 +171,7 @@ class VestingDetails extends Component {
     const tokenVesting = await this.getTokenVesting();
 
     try {
-      this.startLoader();
+      // this.startLoader();
       await tokenVesting.revoke(token, { from: accounts[0] });
       this.props.getData();
     } catch (e) {

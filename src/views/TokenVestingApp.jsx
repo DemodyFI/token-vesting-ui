@@ -11,15 +11,25 @@ import Spinner from "./Spinner";
 import "../stylesheets/TokenVestingApp.css";
 import Network from "../network";
 import Footer from "./Footer";
+import TxModal from "./TxModal";
 
 class TokenVestingApp extends Component {
   constructor() {
     super();
-    this.state = { name: "Token", loading: true };
+    this.state = { name: "Token", loading: true, txhash: "", txStatus: "" };
+
+    this.setTxData = this.setTxData.bind(this);
   }
 
   componentDidMount() {
     this.getData();
+  }
+
+  setTxData(hash, status) {
+    this.setState({
+      txhash: hash,
+      txStatus: status,
+    });
   }
 
   render() {
@@ -27,7 +37,9 @@ class TokenVestingApp extends Component {
     return (
       <div className="TokenVestingApp">
         {this.state.loading ? <Spinner /> : null}
-
+        {this.state.txhash !== "" ? (
+          <TxModal txhash={this.state.txhash} status={this.state.txStatus} />
+        ) : null}
         <Header
           address={address}
           token={token}
@@ -43,6 +55,7 @@ class TokenVestingApp extends Component {
                 details={this.state}
                 getData={() => this.getData()}
                 setLoader={(x) => this.setLoader(x)}
+                setTxData={this.setTxData}
               />
             </Col>
 

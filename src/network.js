@@ -1,13 +1,13 @@
 import Web3 from "web3";
 import Onboard from "bnc-onboard";
 
-const rpcUrl = "https://rinkeby.infura.io/v3/8b8d0c60bfab43bc8725df20fc660d15";
+const rpcUrl = "https://mainnet.infura.io/v3/8b8d0c60bfab43bc8725df20fc660d15";
 
 let web3;
 
 const onboard = Onboard({
   dappId: "052b3fe9-87d5-4614-b2e9-6dd81115979a", // [String] The API key created by step one above
-  networkId: 4, // [Integer] The Ethereum network ID your Dapp uses.
+  networkId: 1, // [Integer] The Ethereum network ID your Dapp uses.
   subscriptions: {
     wallet: (wallet) => {
       web3 = new Web3(wallet.provider);
@@ -17,10 +17,6 @@ const onboard = Onboard({
   walletSelect: {
     wallets: [
       { walletName: "metamask" },
-      {
-        walletName: "portis",
-        apiKey: "d7d72646-709a-45ab-aa43-8de5307ae0df",
-      },
       {
         walletName: "trezor",
         appUrl: "https://reactdemo.blocknative.com",
@@ -34,23 +30,12 @@ const onboard = Onboard({
       },
       {
         walletName: "walletConnect",
-        infuraKey: "d5e29c9b9a9d4116a7348113f57770a8",
+        infuraKey: "8b8d0c60bfab43bc8725df20fc660d15",
         // rpc: {
         //   [networkId]: rpcUrl,
         // },
       },
-      { walletName: "dapper" },
-      { walletName: "status" },
-      { walletName: "walletLink", rpcUrl },
-      { walletName: "fortmatic", apiKey: "pk_test_886ADCAB855632AA" },
-      { walletName: "unilogin" },
-      { walletName: "torus" },
-      { walletName: "squarelink", apiKey: "87288b677f8cfb09a986" },
-      { walletName: "authereum", disableNotifications: true },
       { walletName: "trust", rpcUrl },
-      { walletName: "opera" },
-      { walletName: "operaTouch" },
-      { walletName: "imToken", rpcUrl },
     ],
   },
 });

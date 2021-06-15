@@ -4,7 +4,6 @@
   height: 100vh;
 }
 
-
 .header {
   margin-bottom: 30px;
   padding: 20px;
@@ -75,7 +74,7 @@
   justify-content: center;
   /* padding-top: 200px; */
 
-  background: rgba(255, 255, 255, .5);
+  background: rgba(255, 255, 255, 0.5);
   z-index: 1;
 }
 
@@ -85,6 +84,13 @@
 
 .emoji {
   vertical-align: middle;
+}
+
+.tx-modal {
+  padding: 20px;
+  background: #d3caf3;
+  width: 500px;
+  color: black;
 }
 
 th {

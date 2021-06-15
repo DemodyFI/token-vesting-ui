@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Web3 from "web3";
 
 import TokenVestingApp from "./views/TokenVestingApp";
-import Buy from "./views/Buy";
+import Vesting from "./views/Vesting";
 
 const App = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={Buy} />
+      <Route exact path="/" component={Vesting} />
       <Route path="/:address/:token" component={Main} />
       <Route component={MissingAddress} />
     </Switch>
