@@ -13,7 +13,7 @@ function Header({ address, token, tokenName, contractName }) {
         >
           <img
             className="logo hidden-xs hidden-sm"
-            src={require("../assets/logosharp.png").default}
+            src="https://ik.imagekit.io/hg5ihbggxrw/logosharp_3P8PuuYVB.png"
             alt="OpenZeppelin logo"
           />
         </a>

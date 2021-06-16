@@ -51,7 +51,7 @@ export default class Vesting extends Component {
         <Header
           address={"0x5f6c5c2fb289db2228d159c69621215e354218d7"}
           token={"0x5f6c5c2fb289db2228d159c69621215e354218d7"}
-          tokenName={"DemodyFi Token"}
+          tokenName={"Demodyfi Token"}
           contractName={"DMOD"}
         />
         <div className="card-container">
