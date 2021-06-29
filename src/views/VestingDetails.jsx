@@ -29,6 +29,7 @@ class VestingDetails extends Component {
       beneficiary,
     } = this.props.details;
     const releasable = vested ? vested - released : 0;
+    const cliffPast = cliff < new Date() / 1000 ? true : false;
 
     return (
       <div className="details">
@@ -57,14 +58,25 @@ class VestingDetails extends Component {
               {this.formatTokens(released)}
             </TableRow>
 
-            <TableRow title="Releasable">
-              <Releasable
-                releasable={releasable}
-                onRelease={() => this.onRelease()}
-              >
-                {this.formatTokens(releasable)}
-              </Releasable>
-            </TableRow>
+            {cliffPast ? (
+              <TableRow title="Releasable">
+                <Releasable
+                  releasable={releasable}
+                  onRelease={() => this.onRelease()}
+                >
+                  {this.formatTokens(releasable)}
+                </Releasable>
+              </TableRow>
+            ) : (
+              <TableRow title="Releasable">
+                <Releasable
+                  releasable={releasable}
+                  onRelease={() => this.onRelease()}
+                >
+                  0 DMOD
+                </Releasable>
+              </TableRow>
+            )}
 
             <TableRow title="Revocable">
               <Revocable
