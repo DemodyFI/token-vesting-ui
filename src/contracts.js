@@ -8,6 +8,22 @@ export async function getTokenVesting(address) {
   return TokenVesting.at(address);
 }
 
+export async function getPublicTokenVesting1() {
+  const TokenVesting = contract({
+    abi: require("./airdrop.json"),
+  });
+  const provider = await Network.provider();
+  TokenVesting.setProvider(provider);
+  return TokenVesting.at("0x64C19b7191Be0055E8f1ce1fabB32Cf52695aB61");
+}
+
+export async function getPublicTokenVesting2() {
+  const TokenVesting = contract(require("./airdrop.json"));
+  const provider = await Network.provider();
+  TokenVesting.setProvider(provider);
+  return TokenVesting.at("0x64C19b7191Be0055E8f1ce1fabB32Cf52695aB61");
+}
+
 export async function getSimpleToken(address) {
   const SimpleToken = contract(require("./SimpleToken.json"));
   const provider = await Network.provider();

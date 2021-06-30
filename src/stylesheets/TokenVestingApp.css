@@ -96,3 +96,11 @@
 th {
   min-width: 155px;
 }
+
+.vesting-info-table {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}

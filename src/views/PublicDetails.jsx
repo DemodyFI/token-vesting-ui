@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Table } from "react-bootstrap";
 import moment from "moment";
 
-import { getTokenVesting } from "../contracts";
+import { getPublicTokenVesting1, getTokenVesting } from "../contracts";
 import { displayAmount } from "../utils";
 import Network from "../network";
 
@@ -10,7 +10,7 @@ import { ContractLink } from "./Links";
 import Emoji from "./Emoji";
 import TxModal from "./TxModal";
 
-class VestingDetails extends Component {
+class PublicDetails extends Component {
   constructor() {
     super();
     this.state = { canRevoke: false };
@@ -18,18 +18,8 @@ class VestingDetails extends Component {
   }
 
   render() {
-    const {
-      start,
-      cliff,
-      end,
-      total,
-      released,
-      vested,
-      revocable,
-      beneficiary,
-    } = this.props.details;
-    const releasable = vested ? vested - released : 0;
-    const cliffPast = cliff < new Date() / 1000 ? true : false;
+    const { start, end, cliff, total, vested, beneficiary } =
+      this.props.details;
 
     return (
       <div className="details">
@@ -42,48 +32,27 @@ class VestingDetails extends Component {
 
             <TableRow title="Start date">{this.formatDate(start)}</TableRow>
 
-            <TableRow title="Cliff">{this.formatDate(cliff)}</TableRow>
+            <TableRow title="Release 1">{this.formatDate(cliff)}</TableRow>
 
-            <TableRow title="End date">{this.formatDate(end)}</TableRow>
+            <TableRow title="Release 2">{this.formatDate(end)}</TableRow>
 
-            <TableRow title="Total vesting">
-              {this.formatTokens(total)}
-            </TableRow>
+            <TableRow title="Total vesting">{total} DMOD</TableRow>
 
-            <TableRow title="Already vested">
+            {/* <TableRow title="Already vested">
               {this.formatTokens(vested)}
             </TableRow>
 
             <TableRow title="Already released">
               {this.formatTokens(released)}
-            </TableRow>
+            </TableRow> */}
 
-            {cliffPast ? (
-              <TableRow title="Releasable">
-                <Releasable
-                  releasable={releasable}
-                  onRelease={() => this.onRelease()}
-                >
-                  {this.formatTokens(releasable)}
-                </Releasable>
-              </TableRow>
-            ) : (
-              <TableRow title="Releasable">
-                <Releasable
-                  releasable={releasable}
-                  onRelease={() => this.onRelease()}
-                >
-                  0 DMOD
-                </Releasable>
-              </TableRow>
-            )}
-
-            <TableRow title="Revocable">
-              <Revocable
-                revocable={revocable}
-                canRevoke={this.state.canRevoke}
-                onRevoke={() => this.onRevoke()}
-              />
+            <TableRow title="Releasable">
+              <Releasable
+                releasable={vested}
+                onRelease={() => this.onRelease()}
+              >
+                {this.formatTokens(vested)}
+              </Releasable>
             </TableRow>
           </tbody>
         </Table>
@@ -118,23 +87,16 @@ class VestingDetails extends Component {
   }
 
   async onRelease() {
-    const { owner, revoked } = this.props.details;
     await Network.connectToWallet();
     const accounts = await Network.getAccounts();
 
-    const isOwner = accounts[0]
-      ? owner === accounts[0].toLowerCase()
-      : undefined;
-
-    this.setState({ canRevoke: isOwner && !revoked, accounts });
-
     const { token } = this.props;
-    const tokenVesting = await this.getTokenVesting();
+    const tokenVesting = await getPublicTokenVesting1(this.props.address);
 
     try {
       this.startLoader();
       tokenVesting
-        .release(token, { from: accounts[0] })
+        .claimAirdrop({ from: accounts[0] })
         .on("transactionHash", (hash) => {
           this.props.setTxData(hash, "Pending");
         })
@@ -164,29 +126,6 @@ class VestingDetails extends Component {
       this.props.getData();
     } catch (e) {
       console.log(e);
-      this.stopLoader();
-    }
-  }
-
-  async onRevoke() {
-    const { owner, revoked } = this.props.details;
-    await Network.connectToWallet();
-    const accounts = await Network.getAccounts();
-
-    const isOwner = accounts[0]
-      ? owner === accounts[0].toLowerCase()
-      : undefined;
-
-    this.setState({ canRevoke: isOwner && !revoked, accounts });
-
-    const { token } = this.props;
-    const tokenVesting = await this.getTokenVesting();
-
-    try {
-      // this.startLoader();
-      await tokenVesting.revoke(token, { from: accounts[0] });
-      this.props.getData();
-    } catch (e) {
       this.stopLoader();
     }
   }
@@ -229,4 +168,4 @@ function Releasable({ releasable, onRelease, children }) {
   );
 }
 
-export default VestingDetails;
+export default PublicDetails;

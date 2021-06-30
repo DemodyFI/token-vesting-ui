@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 import { getDmodCrowdsale, getAggregatorV3 } from "../contracts";
+import Table from "react-bootstrap/Table";
+import Accordion from "react-bootstrap/Accordion";
 
 import Network from "../network";
 import Header from "./Header";
@@ -8,49 +10,36 @@ import Header from "./Header";
 import Spinner from "./Spinner";
 import Footer from "./Footer";
 import "../stylesheets/Buy.css";
+import { Button, Card } from "react-bootstrap";
 
 export default class Vesting extends Component {
   constructor(props) {
     super(props);
     this.state = {};
 
-    console.log(props);
-
-    this.updateVestingAddress = this.updateVestingAddress.bind(this);
-    this.goToVesting = this.goToVesting.bind(this);
+    this.goToInvestors = this.goToInvestors.bind(this);
+    this.goToPublic = this.goToPublic.bind(this);
   }
 
-  async componentDidMount() {}
-
-  async updateVestingAddress(e) {
-    const inputValue = e.target.value;
-    console.log(
-      "%cMyProject%cline:28%cinputValue",
-      "color:#fff;background:#ee6f57;padding:3px;border-radius:2px",
-      "color:#fff;background:#1f3c88;padding:3px;border-radius:2px",
-      "color:#fff;background:rgb(254, 67, 101);padding:3px;border-radius:2px",
-      inputValue
-    );
-
-    this.setState({
-      vestingContractAddress: inputValue,
-    });
+  async goToInvestors() {
+    this.props.history.push("/investors");
   }
 
-  async goToVesting() {
-    this.props.history.push(
-      `/${this.state.vestingContractAddress}/0x5f6c5c2fb289db2228d159c69621215e354218d7`
-    );
+  async goToPublic() {
+    this.props.history.push("/public");
   }
 
   render() {
+    // const Item = Accordion.Item;
+    // const Item1 = Accordion.Header;
+    // const Item2 = Accordion.Body;
     return (
       <div className="BuyComponent">
         {this.state.loading ? <Spinner /> : null}
 
         <Header
-          address={"0x5f6c5c2fb289db2228d159c69621215e354218d7"}
-          token={"0x5f6c5c2fb289db2228d159c69621215e354218d7"}
+          address={"0xD1D807FAAfb3DcAAb5380E01e9A2cbafcf7B6f7F"}
+          token={"0xD1D807FAAfb3DcAAb5380E01e9A2cbafcf7B6f7F"}
           tokenName={"Demodyfi Token"}
           contractName={"DMOD"}
         />
@@ -63,23 +52,76 @@ export default class Vesting extends Component {
             />
           </div>
           <h2>Demodyfi Vesting Info</h2>
-          <h6>
-            Please enter the vesting address provided by us. It will give you
-            all the information related to the schedule and token amounts
-          </h6>
-          <input
-            placeholder="Enter Vesting Address"
-            type="text"
-            onChange={this.updateVestingAddress}
-            className="inputBuy"
-          />
-
-          <button className="buttonLink" onClick={this.goToVesting}>
-            Get Vesting Info
-          </button>
+          <h6>In what round did you invest in demodyfi ?</h6>
+          <div style={{ display: "flex", marginTop: "25px" }}>
+            <button className="buttonLink" onClick={this.goToInvestors}>
+              Seed/Private
+            </button>
+            <button className="buttonLink" onClick={this.goToPublic}>
+              Public
+            </button>
+          </div>
         </div>
+        <div className="vesting-info-table">
+          <h4>Investment Rounds Schedules</h4>
+          <br />
+          <Table striped bordered condensed>
+            <tbody>
+              <tr>
+                <th>Investment Round</th>
+                <th>Vesting Schedule</th>
+              </tr>
+              <tr>
+                <td>Seed</td>
+                <td>5% at TGE, rest vests over 12 months</td>
+              </tr>
+              <tr>
+                <td>Private</td>
+                <td>10% at TGE, rest vests over 12 months</td>
+              </tr>
+              <tr>
+                <td>Public</td>
+                <td>33% at TGE, rest vests over 33% monthly</td>
+              </tr>
+            </tbody>
+          </Table>
+          <br />
+          <br />
+        </div>
+        <div className="vesting-info-table">
+          <h4>FAQs</h4>
+          <Accordion style={{ textAlign: "left" }}>
+            <Card>
+              <Accordion.Toggle as={Card.Header} eventKey="0">
+                <h6>1. What is the Demodyfi ?</h6>
+              </Accordion.Toggle>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>Hello! I'm the body</Card.Body>
+              </Accordion.Collapse>
+            </Card>
+            <Card>
+              <Accordion.Toggle as={Card.Header} eventKey="1">
+                <h6>2. How to get DMOD token ?</h6>
+              </Accordion.Toggle>
+              <Accordion.Collapse eventKey="1">
+                <Card.Body>Hello! I'm another body</Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+        </div>
+        <br />
+        <br />
         <Footer />
       </div>
     );
   }
+}
+
+function TableRow({ title, children }) {
+  return (
+    <tr>
+      <th>{title}</th>
+      <td>{children}</td>
+    </tr>
+  );
 }
