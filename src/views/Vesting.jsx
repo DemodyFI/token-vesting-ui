@@ -62,52 +62,54 @@ export default class Vesting extends Component {
             </button>
           </div>
         </div>
-        <div className="vesting-info-table">
-          <h4>Investment Rounds Schedules</h4>
-          <br />
-          <Table striped bordered condensed>
-            <tbody>
-              <tr>
-                <th>Investment Round</th>
-                <th>Vesting Schedule</th>
-              </tr>
-              <tr>
-                <td>Seed</td>
-                <td>5% at TGE, rest vests over 12 months</td>
-              </tr>
-              <tr>
-                <td>Private</td>
-                <td>10% at TGE, rest vests over 12 months</td>
-              </tr>
-              <tr>
-                <td>Public</td>
-                <td>33% at TGE, rest vests over 33% monthly</td>
-              </tr>
-            </tbody>
-          </Table>
-          <br />
-          <br />
-        </div>
-        <div className="vesting-info-table">
-          <h4>FAQs</h4>
-          <Accordion style={{ textAlign: "left" }}>
-            <Card>
-              <Accordion.Toggle as={Card.Header} eventKey="0">
-                <h6>1. What is the Demodyfi ?</h6>
-              </Accordion.Toggle>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>Hello! I'm the body</Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Accordion.Toggle as={Card.Header} eventKey="1">
-                <h6>2. How to get DMOD token ?</h6>
-              </Accordion.Toggle>
-              <Accordion.Collapse eventKey="1">
-                <Card.Body>Hello! I'm another body</Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
+        <div>
+          <div className="vesting-info-table">
+            <h4>Investment Rounds Schedules</h4>
+            <br />
+            <Table striped bordered condensed>
+              <tbody>
+                <tr>
+                  <th>Investment Round</th>
+                  <th>Vesting Schedule</th>
+                </tr>
+                <tr>
+                  <td>Seed</td>
+                  <td>5% at TGE, rest vests over 12 months</td>
+                </tr>
+                <tr>
+                  <td>Private</td>
+                  <td>10% at TGE, rest vests over 12 months</td>
+                </tr>
+                <tr>
+                  <td>Public</td>
+                  <td>33% at TGE, rest vests over 33% monthly</td>
+                </tr>
+              </tbody>
+            </Table>
+            <br />
+            <br />
+          </div>
+          <div className="vesting-info-table">
+            <h4>FAQs</h4>
+            <Accordion style={{ textAlign: "left" }}>
+              <Card>
+                <Accordion.Toggle as={Card.Header} eventKey="0">
+                  <h6>1. What is the Demodyfi ?</h6>
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>Hello! I'm the body</Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Accordion.Toggle as={Card.Header} eventKey="1">
+                  <h6>2. How to get DMOD token ?</h6>
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="1">
+                  <Card.Body>Hello! I'm another body</Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
+          </div>
         </div>
         <br />
         <br />
