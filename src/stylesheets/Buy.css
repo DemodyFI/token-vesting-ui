@@ -1,18 +1,19 @@
 .BuyComponent {
-  background-color: #fafbfc;
+  background: url("../images/Middlebg.png");
   text-align: center;
-  height: 100vh;
+  height: 100%;
+  width: auto;
+  background-repeat: no-repeat;
 }
 
 .BuyComponent .logo-image {
-  height: 84px;
-  width: 84px;
+  margin-bottom: 2rem;
 }
-.BuyComponent h2 {
+/* .BuyComponent h2 {
   font-size: 24px;
   font-weight: bold;
   color: #3f355f;
-}
+} */
 
 .BuyComponent h4 {
   font-size: 20px;
@@ -20,15 +21,47 @@
   color: #3f355fd3;
 }
 
+.BuyComponent .heading {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 47px;
+  color: #fff4cc;
+}
+
+.BuyComponent .sub-heading {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 30px;
+  color: #ff9a36;
+}
+
+.BuyComponent .accordian-card {
+  background: transparent;
+  border: none;
+}
+
 .BuyComponent .card-container {
   box-shadow: 0 4px 4px hsla(0, 0%, 76.9%, 0.3);
-  background-color: var(--white);
+  background-image: linear-gradient(
+      318.86deg,
+      #321b9f 0%,
+      rgba(123, 35, 195, 0) 53.86%
+    ),
+    radial-gradient(
+      83.68% 83.68% at 0% 0%,
+      #5902d2 0%,
+      rgba(133, 66, 244, 0) 95.83%
+    );
+  border-radius: 2.0488px;
   padding: 2rem;
-  width: 40%;
+  width: 30%;
+  opacity: 0.9;
   margin: 0 auto;
-  border-radius: 4px;
   display: flex;
   flex-direction: column;
+  background-repeat: no-repeat;
 }
 
 .BuyComponent span {
@@ -79,6 +112,16 @@
   background-color: #323232;
 }
 
+.BuyComponent .Faq {
+  background: url(../images/bg.png);
+  width: 100%;
+  height: 28rem;
+}
+
+.BuyComponent .vector-img {
+  margin-left: 6rem;
+  margin-top: 2rem;
+}
 .BuyComponent .inputBuy {
   display: inline-block;
   padding: 0.35em 1.2em;
@@ -116,7 +159,115 @@
 .BuyComponent .termscheck {
   margin-right: 5px;
 }
+.BuyComponent .table-heading {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 29px;
+  color: #f3f2f9;
+}
+.BuyComponent .heading-data {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 29px;
+  color: #f3f2f9;
+}
+.BuyComponent .heading-info {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 29px;
+  /* identical to box height, or 161% */
 
+  text-align: center;
+
+  /* Color / White */
+
+  color: #ffffff;
+}
+.BuyComponent .PrivateButton {
+  background: linear-gradient(
+      318.86deg,
+      #5902d2 0%,
+      rgba(133, 66, 244, 0) 53.86%
+    ),
+    radial-gradient(
+      58.26% 58.26% at 0% 103.31%,
+      #19d2ff 26.56%,
+      rgba(16, 231, 251, 0) 100%
+    ),
+    radial-gradient(
+      67.56% 67.56% at 100% 0%,
+      #ffccfb 0%,
+      #ff39f0 45.31%,
+      rgba(238, 65, 255, 0) 100%
+    ),
+    radial-gradient(
+      83.68% 83.68% at 0% 0%,
+      #5902d2 0%,
+      rgba(133, 66, 244, 0) 95.83%
+    );
+  border-radius: 4px;
+  font-family: Chillax;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height, or 125% */
+
+  text-align: center;
+  text-transform: capitalize;
+
+  /* Color / White */
+
+  color: #ffffff;
+  width: 12rem;
+  height: 2.5rem;
+  position: absolute;
+}
+
+.BuyComponent .PublicButton {
+  background: linear-gradient(
+      329.79deg,
+      #5902d2 0%,
+      rgba(133, 66, 244, 0) 42.95%
+    ),
+    radial-gradient(
+      58.26% 58.26% at 0% 103.31%,
+      #ff39f0 26.56%,
+      rgba(133, 66, 244, 0) 100%
+    ),
+    radial-gradient(
+      67.56% 67.56% at 100% 0%,
+      #fff4cc 0%,
+      #ff9a36 45.31%,
+      rgba(243, 127, 157, 0.22) 100%
+    ),
+    radial-gradient(
+      83.68% 83.68% at 0% 0%,
+      #5902d2 0%,
+      rgba(133, 66, 244, 0) 95.83%
+    );
+  border-radius: 4px;
+  font-family: Chillax;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  /* identical to box height, or 125% */
+
+  text-align: center;
+  text-transform: capitalize;
+
+  /* Color / White */
+
+  color: #ffffff;
+  margin-left: 13rem;
+  width: 12rem;
+  height: 2.5rem;
+  position: absolute;
+}
 @media all and (max-width: 30em) {
   .BuyComponent .buttonBuy {
     display: block;

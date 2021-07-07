@@ -6,7 +6,7 @@ import "../stylesheets/Footer.css";
 function Footer() {
   return (
     <div className="footer-container">
-      <div className="footer-left">© 2020 Demodyfi • Made with Open Zeppelin</div>
+      <div className="footer-left">© 2020 Demodyfi • Made with <span style={{ color: '#ff9a36'}}>Open Zeppelin </span></div>
       <div className="footer-right">
         <div
           className="footer-icon"

@@ -11,6 +11,11 @@ import Spinner from "./Spinner";
 import Footer from "./Footer";
 import "../stylesheets/Buy.css";
 import { Button, Card } from "react-bootstrap";
+import Middle from "../images/Middlebg.png";
+import logo from '../images/Logo.png';
+import vector from '../images/Vector.png';
+import content from '../images/Content.png';
+
 
 export default class Vesting extends Component {
   constructor(props) {
@@ -34,6 +39,7 @@ export default class Vesting extends Component {
     // const Item1 = Accordion.Header;
     // const Item2 = Accordion.Body;
     return (
+      <div>
       <div className="BuyComponent">
         {this.state.loading ? <Spinner /> : null}
 
@@ -43,56 +49,61 @@ export default class Vesting extends Component {
           tokenName={"Demodyfi Token"}
           contractName={"DMOD"}
         />
-        <div className="card-container">
-          <div>
+          <div className="card-container">
+            
+          <div> 
             <img
-              src={require("../assets/logosharp.png").default}
+              src={logo}
               alt="domodyfi logo"
               className="logo-image"
             />
           </div>
-          <h2>Demodyfi Vesting Info</h2>
-          <h6>In what round did you invest in demodyfi ?</h6>
-          <div style={{ display: "flex", marginTop: "25px" }}>
-            <button className="buttonLink" onClick={this.goToInvestors}>
+          <h2 className="heading">Demodyfi Vesting Info</h2>
+          <h6 className="sub-heading">In what round did you invest in demodyfi ?</h6>
+          <div style={{ display: "flex", marginTop: "25px", paddingBottom: "2rem" }}>
+            <button className="PrivateButton" onClick={this.goToInvestors}>
               Seed/Private
             </button>
-            <button className="buttonLink" onClick={this.goToPublic}>
+            <button className="PublicButton" onClick={this.goToPublic}>
               Public
             </button>
           </div>
         </div>
         <div>
           <div className="vesting-info-table">
-            <h4>Investment Rounds Schedules</h4>
+              <h4 style={{fontSize: 25}} className="heading">Investment Rounds Schedules</h4>
             <br />
             <Table striped bordered condensed>
               <tbody>
                 <tr>
-                  <th>Investment Round</th>
-                  <th>Vesting Schedule</th>
+                  <th className="table-heading">Investment Round</th>
+                  <th className="table-heading">Vesting Schedule</th>
                 </tr>
                 <tr>
-                  <td>Seed</td>
-                  <td>5% at TGE, rest vests over 12 months</td>
+                  <td className="heading-data">Seed</td>
+                  <td className="heading-info">5% at TGE, rest vests over 12 months</td>
                 </tr>
                 <tr>
-                  <td>Private</td>
-                  <td>10% at TGE, rest vests over 12 months</td>
+                  <td className="heading-data">Private</td>
+                  <td className="heading-info">10% at TGE, rest vests over 12 months</td>
                 </tr>
                 <tr>
-                  <td>Public</td>
-                  <td>33% at TGE, rest vests over 33% monthly</td>
+                  <td className="heading-data">Public</td>
+                  <td className="heading-info">33% at TGE, rest vests over 33% monthly</td>
                 </tr>
               </tbody>
             </Table>
             <br />
             <br />
           </div>
-          <div className="vesting-info-table">
-            <h4>FAQs</h4>
-            <Accordion style={{ textAlign: "left" }}>
-              <Card>
+           </div>
+          <div className="Faq">
+            <div style={{display: 'flex'}}>
+              <img className="vector-img" src={vector} alt="vector" />
+               <img style={{marginLeft: '16rem'}} className="vector-img" src={content} alt="vector" />
+            {/* <h4 style={{fontSize: 25}} className="heading">FAQs</h4>
+            <Accordion style={{ textAlign: "left", backgroundColor: 'transparent' }}>
+              <Card className="accordian-card">
                 <Accordion.Toggle as={Card.Header} eventKey="0">
                   <h6>1. What is the Demodyfi ?</h6>
                 </Accordion.Toggle>
@@ -100,7 +111,7 @@ export default class Vesting extends Component {
                   <Card.Body>Hello! I'm the body</Card.Body>
                 </Accordion.Collapse>
               </Card>
-              <Card>
+              <Card className="accordian-card">
                 <Accordion.Toggle as={Card.Header} eventKey="1">
                   <h6>2. How to get DMOD token ?</h6>
                 </Accordion.Toggle>
@@ -108,7 +119,8 @@ export default class Vesting extends Component {
                   <Card.Body>Hello! I'm another body</Card.Body>
                 </Accordion.Collapse>
               </Card>
-            </Accordion>
+              </Accordion> */}
+              </div>
           </div>
         </div>
         <br />

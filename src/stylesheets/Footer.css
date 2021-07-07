@@ -5,16 +5,21 @@
   left: 0;
   width: 100%;
   justify-content: space-between;
-  background-color: #3f355f;
-  color: #999999;
+  background-color: #010013;
+  color: #878dad;
   padding: 1rem 1.5rem;
+  font-family: Ranade;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
 }
 
 .footer-container .footer-right {
   display: flex;
 }
 .footer-container .footer-right .footer-icon {
-  color: #999999;
+  color: #878dad;
   font-size: 20px;
   display: flex;
   cursor: pointer;
